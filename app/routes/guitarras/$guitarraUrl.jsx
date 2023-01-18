@@ -53,7 +53,9 @@ function Guitarra() {
       }
 
       agregarCarrito(guitarraSeleccionada)
+      alert('Producto agregado al carrito')
     }
+
   return (
     <div className="guitarra">
         <img className="imagen" src={imagen.data.attributes.url} alt={`imagen de la guitarra ${nombre}`} />
@@ -81,6 +83,7 @@ function Guitarra() {
                 type="submit" 
                 value="Agregar al carrito" 
                 />
+                
 
             </form>
 

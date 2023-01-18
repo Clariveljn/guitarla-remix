@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useOutletContext } from '@remix-run/react'
+import {ClientOnly} from 'remix-utils'
 import styles from '~/styles/carrito.css'
 
 export function links() {
@@ -27,6 +28,8 @@ function Carrito() {
         setTotal(calculoTotal)
     }, [carrito])
   return (
+    <ClientOnly fallback={'Cargando...'}>
+        {() => (
     <main className="contenedor">
         <h1 className="heading">Carrito de compras</h1>
 
@@ -34,8 +37,8 @@ function Carrito() {
             <div className='carrito'>
                 <h2>Articulos</h2>
 
-                {carrito.length === 0 ? 'Carrito Vacio' : (
-                    carrito.map(producto => (
+                {carrito?.length === 0 ? 'Carrito Vacio' : (
+                    carrito?.map(producto => (
                         <div key={producto.id} className="producto">
                             <div>
                                 <img src={producto.imagen} alt={`Imagen del producto ${producto.nombre}`} />
@@ -80,6 +83,8 @@ function Carrito() {
         </div>
   
     </main>
+    )}
+    </ClientOnly>
   )
 }
 
